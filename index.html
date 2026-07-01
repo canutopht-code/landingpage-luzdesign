@@ -1364,10 +1364,7 @@
                 <div class="contact-form-wrapper reveal">
                     <h3>Fale com a gente e comece hoje mesmo!</h3>
                     <p>Preencha o formulário e nossa equipe retornará em até 24 horas.</p>
-                    <form id="contactForm" action="https://formsubmit.co/contato@luzdesigniluminacao.com.br" method="POST">
-                        <input type="hidden" name="_subject" value="Novo contato via Landing Page - LuzDesign">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nome</label>
                             <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
@@ -1555,6 +1552,30 @@
                 }
             });
         });
+
+        // ===== FORM TO WHATSAPP =====
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const message = document.getElementById('message').value;
+                
+                const text = `Olá, LuzDesign! Gostaria de solicitar um orçamento:\n\n` +
+                             `*Nome:* ${name}\n` +
+                             `*E-mail:* ${email}\n` +
+                             `*Telefone:* ${phone || 'Não informado'}\n` +
+                             `*Mensagem:* ${message}`;
+                
+                const encodedText = encodeURIComponent(text);
+                const whatsappUrl = `https://wa.me/5513997990367?text=${encodedText}`;
+                
+                window.open(whatsappUrl, '_blank');
+            });
+        }
     </script>
 
 </body>
