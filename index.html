@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuzDesign — Iluminação de Alto Padrão | Bertioga & Litoral Paulista</title>
+    <meta name="description" content="LuzDesign: consultoria, projetos luminotécnicos e curadoria de produtos de iluminação de alto padrão. Desde 2007 transformando ambientes no litoral paulista.">
+    <meta property="og:title" content="LuzDesign — Iluminação de Alto Padrão">
+    <meta property="og:description" content="Consultoria e projetos luminotécnicos exclusivos para residências e espaços de alto padrão em Bertioga e litoral paulista.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LuzDesign">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-bg: #0a0a0a;
+            --color-bg-alt: #111111;
+            --color-bg-card: #161616;
+            --color-bg-card-hover: #1c1c1c;
+            --color-text: #ffffff;
+            --color-text-secondary: #a0a0a0;
+            --color-text-muted: #666666;
+            --color-accent: #D4A843;
+            --color-accent-light: #E8C96A;
+            --color-border: #222222;
+            --color-border-light: #333333;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== HEADER / NAV ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .logo-img {
+            height: 85px; /* Logotipo maior */
+            width: auto;
+            mix-blend-mode: screen; /* Remove o fundo preto */
+            display: block;
+            filter: contrast(1.15) brightness(1.1);
+            transition: var(--transition);
+        }
+
+        .header.scrolled .logo-img {
+            height: 60px; /* Reduz ligeiramente ao rolar a página */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-text);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-social {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-social a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--color-border-light);
+            color: var(--color-text-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-social a:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--color-text);
+            transition: var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.4) 0%,
+                rgba(10, 10, 10, 0.6) 50%,
+                rgba(10, 10, 10, 0.85) 100%
+            );
+        }
+
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 24px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 24px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 28px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            max-width: 650px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 1s ease 1.2s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 168, 67, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+
+        .hero-dot {
+            width: 40px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hero-dot.active {
+            background: var(--color-accent);
+            width: 60px;
+        }
+
+        /* ========== SECTION COMMON ========== */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--color-accent);
+        }
+
+        .about-content .section-label,
+        .about-content .section-title {
+            text-align: left;
+        }
+
+        .about-content p {
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.9;
+            font-size: 0.95rem;
+        }
+
+        .about-content .btn {
+            margin-top: 20px;
+        }
+
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            margin-top: 32px;
+        }
+
+        .about-badge-number {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .about-badge-text {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        /* ========== SERVICES SECTION ========== */
+        .services {
+            background: var(--color-bg-alt);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .service-card {
+            background: var(--color-bg-card);
+            padding: 48px 32px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--color-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            background: var(--color-bg-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-number {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-border-light);
+            line-height: 1;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-number {
+            color: var(--color-accent);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ========== GALLERY / PROJECTS ========== */
+        .gallery {
+            background: var(--color-bg);
+            padding: 120px 0;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.8) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-text h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .gallery-item-text span {
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .gallery-large {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        /* ========== STATS ========== */
+        .stats {
+            background: var(--color-bg-alt);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+        }
+
+        /* ========== FAQ ========== */
+        .faq {
+            background: var(--color-bg);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            padding: 32px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .faq-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact {
+            background: var(--color-bg-alt);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+        }
+
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            padding: 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: var(--color-accent);
+        }
+
+        .contact-card-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+        }
+
+        .contact-card h4 {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+
+        .contact-form-wrapper h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-form-wrapper > p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background: var(--color-accent-light);
+        }
+
+        /* ========== WHATSAPP FLOAT ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo .logo-text {
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            border-color: var(--color-accent);
+            background: var(--color-accent);
+        }
+
+        .footer-social a:hover svg {
+            color: var(--color-bg);
+        }
+
+        .footer-social svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* ========== MAP ========== */
+        .map-section {
+            width: 100%;
+            line-height: 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            filter: grayscale(1) invert(0.9) contrast(1.2);
+            transition: var(--transition);
+        }
+
+        .map-section iframe:hover {
+            filter: grayscale(0) invert(0) contrast(1);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                gap: 40px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 32px;
+                transition: var(--transition);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .nav-social {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-content .section-label,
+            .about-content .section-title {
+                text-align: center;
+            }
+
+            .about-content p {
+                text-align: center;
+            }
+
+            .about-content .btn {
+                display: block;
+                text-align: center;
+            }
+
+            .about-badge {
+                justify-content: center;
+                display: flex;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .service-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="images/logo-cropped.png" alt="LuzDesign" class="logo-img">
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#inicio" class="active">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contato">Contato</a>
+            </nav>
+
+            <div class="nav-social">
+                <a href="https://www.instagram.com/luzdesignoficial" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://wa.me/5513997990367" target="_blank" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+            </div>
+
+            <div class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="images/real-1.jpg" alt="Projeto de iluminação residencial de alto padrão" loading="eager">
+            </div>
+            <div class="hero-slide">
+                <img src="images/real-2.jpg" alt="Iluminação de sala de jantar de alto padrão" loading="lazy">
+            </div>
+            <div class="hero-slide">
+                <img src="images/real-3.jpg" alt="Projeto de iluminação contemporânea" loading="lazy">
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Iluminação de Alto Padrão</p>
+            <h1 class="hero-title">A Luz que Transforma<br>o Seu Espaço</h1>
+            <p class="hero-description">Desde 2007 criando projetos luminotécnicos exclusivos que unem estética, funcionalidade e conforto. Especializados no litoral paulista.</p>
+            <div class="hero-cta">
+                <a href="https://wa.me/5513997990367?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20LuzDesign." class="btn btn-primary" target="_blank">Fale com um Especialista</a>
+                <a href="#projetos" class="btn btn-outline">Ver Projetos</a>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <div class="hero-dot active" data-slide="0"></div>
+            <div class="hero-dot" data-slide="1"></div>
+            <div class="hero-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT / QUEM SOMOS -->
+    <section class="section about" id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="images/real-4.jpg" alt="Projeto de iluminação LuzDesign - Lavabo Moderno">
+                </div>
+                <div class="about-content reveal">
+                    <p class="section-label">Quem Somos</p>
+                    <h2 class="section-title">Muito Mais que<br>Iluminação</h2>
+                    <p>A <strong>LuzDesign</strong> nasceu em Bertioga, no coração do litoral paulista, com uma missão clara: transformar ambientes através da luz. Desde 2007, nossa equipe de especialistas oferece consultoria personalizada, guiando cada cliente na escolha ideal para seus espaços.</p>
+                    <p>Trabalhamos lado a lado com arquitetos, decoradores e clientes que buscam excelência. Nosso showroom conta com peças exclusivas e artesanais, selecionadas com critério para garantir não apenas beleza, mas também durabilidade — especialmente pensada para as condições do litoral.</p>
+                    <p>Cada projeto é tratado como único. Acompanhamos toda a evolução da obra, desde a concepção até a entrega final, garantindo que cada efeito luminoso seja executado com precisão e sofisticação.</p>
+                    <a href="https://wa.me/5513997990367?text=Olá!%20Gostaria%20de%20agendar%20uma%20consultoria." class="btn btn-primary" target="_blank">Agendar Consultoria</a>
+                    <div class="about-badge">
+                        <div class="about-badge-number">+19</div>
+                        <div class="about-badge-text">Anos de<br>Experiência</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section services" id="servicos">
+        <div class="container">
+            <p class="section-label reveal">Diferenciais</p>
+            <h2 class="section-title reveal">Nossos Serviços</h2>
+            <p class="section-text reveal">Oferecemos um atendimento completo que vai além da venda de produtos. Cada etapa é pensada para proporcionar uma experiência exclusiva.</p>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-number">01</div>
+                    <h3>Consultoria em Iluminação</h3>
+                    <p>Assessoria técnica completa para a escolha ideal de iluminação, considerando estética, funcionalidade e eficiência energética para cada ambiente.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">02</div>
+                    <h3>Projetos Luminotécnicos</h3>
+                    <p>Desenvolvimento de projetos com cálculos técnicos detalhados, definindo luminárias, potências e posições estratégicas para criar a atmosfera perfeita.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">03</div>
+                    <h3>Curadoria de Produtos</h3>
+                    <p>Seleção rigorosa das melhores marcas do mercado, incluindo peças exclusivas e artesanais, com qualidade garantida para o clima do litoral.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">04</div>
+                    <h3>Acompanhamento de Obra</h3>
+                    <p>Presença constante durante toda a execução, garantindo que cada detalhe luminoso seja implementado conforme o projeto, do início à entrega.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY / PROJECTS -->
+    <section class="gallery" id="projetos">
+        <div class="container">
+            <div class="gallery-header reveal">
+                <p class="section-label">Portfólio</p>
+                <h2 class="section-title">Pensado nos<br>Mínimos Detalhes</h2>
+                <p class="section-text">Cada projeto é uma obra de arte luminosa. Confira alguns dos ambientes que transformamos com luz, técnica e sofisticação.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-large reveal">
+                    <img src="images/real-5.jpg" alt="Projeto de iluminação - Sala de Jantar Contemporânea">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/hero-1.png" alt="Projeto de iluminação - Living de alto padrão">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/project-1.png" alt="Projeto de iluminação - Suíte Master">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/project-3.png" alt="Projeto de iluminação - Banheiro de alto padrão">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/project-2.png" alt="Projeto de iluminação - Hall e escada">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/hero-3.png" alt="Projeto de iluminação - Piscina e paisagismo">
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;" class="reveal">
+                <a href="https://luzdesigniluminacao.com.br/projetos/" class="btn btn-outline" target="_blank">Ver Portfólio Completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section stats" id="resultados">
+        <div class="container">
+            <p class="section-label reveal">Nossa Trajetória</p>
+            <h2 class="section-title reveal">Números que Refletem<br>Nossa Dedicação</h2>
+            <p class="section-text reveal">Cada projeto entregue é a prova do nosso compromisso com a excelência e a satisfação dos nossos clientes.</p>
+
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-target="19">0</div>
+                    <div class="stat-label">Anos no Mercado</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-target="500" data-prefix="+">0</div>
+                    <div class="stat-label">Projetos Realizados</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-target="20" data-prefix="+">0</div>
+                    <div class="stat-label">Marcas Parceiras</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
+                    <div class="stat-label">Comprometimento</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <p class="section-label reveal">Dúvidas Frequentes</p>
+            <h2 class="section-title reveal">Como Podemos Ajudar</h2>
+            <p class="section-text reveal">Respostas para as principais perguntas sobre nossos serviços e funcionamento.</p>
+
+            <div class="faq-grid">
+                <div class="faq-item reveal">
+                    <h4>O que a LuzDesign faz?</h4>
+                    <p>Somos especialistas em iluminação de alto padrão. Oferecemos consultoria técnica, projetos luminotécnicos, curadoria de produtos exclusivos e acompanhamento completo de obra para residências e espaços comerciais.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h4>Como funciona a consultoria?</h4>
+                    <p>Nossa consultoria é personalizada. Analisamos seu projeto, entendemos suas necessidades e indicamos as melhores soluções em iluminação, respeitando estilo, funcionalidade e orçamento.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h4>Quais marcas vocês trabalham?</h4>
+                    <p>Trabalhamos com as melhores marcas do mercado nacional e internacional de iluminação e design, incluindo peças artesanais e exclusivas disponíveis em nosso showroom em Bertioga.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h4>Atendem fora de Bertioga?</h4>
+                    <p>Sim! Atuamos em todo o litoral paulista, com forte presença na Riviera de São Lourenço, Santos, Guarujá e região. Também atendemos projetos especiais em outras localidades.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h4>Os produtos resistem ao clima do litoral?</h4>
+                    <p>Absolutamente. Por estarmos no litoral, temos uma preocupação especial com a qualidade e resistência dos materiais, garantindo durabilidade mesmo em condições de maresia e umidade.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h4>Como entrar em contato?</h4>
+                    <p>Você pode nos contatar pelo WhatsApp (13) 99799-0367, telefone (13) 3313-2251, e-mail ou visitando nosso showroom na Av. Marginal, 17467 — Vista Linda, Bertioga-SP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contato">
+        <div class="container">
+            <p class="section-label reveal">Fale Conosco</p>
+            <h2 class="section-title reveal">Solicite um Orçamento</h2>
+            <p class="section-text reveal">Transforme seus ambientes com luz. Entre em contato e comece a criar algo extraordinário.</p>
+
+            <div class="contact-grid">
+                <div class="contact-info-cards reveal">
+                    <a href="https://wa.me/5513997990367" target="_blank" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <h4>Telefone & WhatsApp</h4>
+                        <p>(13) 99799-0367 · (13) 3313-2251</p>
+                    </a>
+                    <a href="mailto:contato@luzdesigniluminacao.com.br" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <h4>E-mail</h4>
+                        <p>contato@luzdesigniluminacao.com.br</p>
+                    </a>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <h4>Showroom</h4>
+                        <p>Av. Marginal, 17467 — Vista Linda<br>Bertioga — SP</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper reveal">
+                    <h3>Fale com a gente e comece hoje mesmo!</h3>
+                    <p>Preencha o formulário e nossa equipe retornará em até 24 horas.</p>
+                    <form id="contactForm" action="https://formsubmit.co/contato@luzdesigniluminacao.com.br" method="POST">
+                        <input type="hidden" name="_subject" value="Novo contato via Landing Page - LuzDesign">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(13) 99999-9999">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" placeholder="Conte-nos sobre seu projeto..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section reveal">
+        <iframe src="https://maps.google.com/maps?q=Av.%20Marginal%2C%2017467%20-%20Vista%20Linda%2C%20Bertioga%20-%20SP&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5513997990367?text=Olá!%20Vi%20o%20site%20da%20LuzDesign%20e%20gostaria%20de%20saber%20mais." class="whatsapp-float" target="_blank" aria-label="Fale pelo WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-cropped.png" alt="LuzDesign" class="logo-img" style="height: 38px;">
+                </div>
+
+                <div class="footer-links">
+                    <a href="#inicio">Início</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#contato">Contato</a>
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/luzdesignoficial" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/luzdesigniluminacao" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 LuzDesign Iluminação. Todos os direitos reservados. · Bertioga, SP</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== HEADER SCROLL =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ===== ACTIVE NAV LINK ON SCROLL =====
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY + 200;
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+                const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+                if (link) {
+                    link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+                }
+            });
+        });
+
+        // ===== HERO SLIDER =====
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        function startSlider() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(parseInt(dot.dataset.slide));
+                startSlider();
+            });
+        });
+
+        startSlider();
+
+        // ===== SCROLL REVEAL =====
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 100);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // ===== COUNTER ANIMATION =====
+        const counters = document.querySelectorAll('.stat-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const prefix = el.dataset.prefix || '';
+                    const suffix = el.dataset.suffix || '';
+                    let current = 0;
+                    const increment = target / 60;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = prefix + Math.floor(current) + suffix;
+                    }, 30);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
